@@ -15,11 +15,24 @@ const rewardSchema = new mongoose.Schema({
         title_2:{
                 type: String,
                 },
+         description:{
+                        type: String,
+                },
+        locations:[{
+                        location:{
+                            type:String
+                        },
+                        longitude :{
+                            type:String
+                        },
+                        latitude:{
+                            type:String
+                        }
+                }],        
 
         validity:{
                  type: String,
-                 min:6,
-                 max:255,
+                 
                 },
         rank:
                 {
@@ -50,7 +63,6 @@ const rewardSchema = new mongoose.Schema({
         const token = jwt.sign({_id:Reward._id.toString() },process.env.TOKEN_SECRET);
         Reward.tokens =  Reward.tokens.concat({token})
         await Reward.save()
-        // console.log(token)
         return token
         }
         const Reward = mongoose.model('Reward_c', rewardSchema)

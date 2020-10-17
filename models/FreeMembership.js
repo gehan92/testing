@@ -4,37 +4,19 @@ const membershipSchema  =new mongoose.Schema({
 
 RankRequire:{
     type:String,
-    max: 255, 
-    min: 6
-},
+   },
+userId:{
+        type:String
+},   
 username:{
-    type:String,
-    max: 255, 
-    min: 6
-},
-// email:{
-//     type:String,
-//     // required: true,
-//     max: 255, 
-//     min: 6
-// },
-// password:{
-//     type:String
-// },
+        type:String,
+   },
 // tokens:[{ 
-//     token:{
-//         type:String
-//     }
+//         token:{
+//             type:String
+//         }
 // }],
-// mobileNumber:{
-//     type:String
-// },
-// isMobileNumberConfirmed:{
-//     type:Boolean
-// },
-// profilePicture:{
-//     type:String
-// }
+
 },{timestamps:true})
 
-module.exports= mongoose.model('appUser',membershipSchema );
+module.exports= mongoose.model('membership',membershipSchema );

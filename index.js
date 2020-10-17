@@ -7,9 +7,9 @@ const Joi = require('@hapi/joi');
 const jwt=require('jsonwebtoken')
 
 //import routes
-const userRoute =   require('./routers/user');
-const rewardRoute= require('./routers/reward')
-const postRoute =   require('./routers/posts');
+const userRoute =   require('./routes/user');
+const rewardRoute= require('./routes/reward')
+//  const freeMembershipRoute =   require('./routes/freeMembership');
 
 dotenv.config();
 mongoose.connect(process.env.DB_CONNECT,
@@ -24,7 +24,7 @@ mongoose.connect(process.env.DB_CONNECT,
 app.use(express.json());
 // route middle
 app.use('/api/user',userRoute);
-app.use('/api/posts',postRoute);
+// app.use('/api/user',freeMembershipRoute);
 app.use('/api/user',rewardRoute);
 
 app.listen(3000,()=>console.log('Server Up running'));

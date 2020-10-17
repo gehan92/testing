@@ -65,13 +65,26 @@ router.get('/rewardsMostRecentFirst',async(req,res)=>{
         }
     });
 
-router.get('/myRewards/:id',auth,async(req,res)=>{
+router.get('/rewards/:id',auth,async(req,res)=>{
         const _id = req.params.id
     try{
         const reward  =  await Reward.findById(_id)
-        res.send(reward)
+        const result = {
+
+            title_1: reward.title_1,
+            title_2: reward.title_2,
+            validity:reward.validity,
+            rank: reward.rank,
+            points: reward.points,
+            date: reward.date
+
+        }
+        if(reward.length == 0 )
+        throw new Error ('no rewards found')
+        else
+        res.status(200).json({status:true, reward:result})
         }catch(e){
-                res.status(500).send()
+                res.status(203).json({status:false, message:e.message})
         }
     });
 

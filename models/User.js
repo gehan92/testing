@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { string } = require('@hapi/joi');
 const appUserSchema  =new mongoose.Schema({
 
 name:{
@@ -19,6 +20,14 @@ email:{
 password:{
     type:String
 },
+languages:{ 
+    language1:{
+        type:String
+    },
+   language2:{
+        type:String
+    }
+},
 tokens:[{ 
     token:{
         type:String
@@ -34,7 +43,6 @@ profilePicture:{
     type:String
 }
 },{timestamps:true})
-
 
     appUserSchema.methods.generateAppUserAuthToken = async function (){
     const appUser = this

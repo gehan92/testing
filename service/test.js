@@ -8,7 +8,14 @@ for(i=1;i<10;i++){
 }
 
 
+const table1 = (req,res)=>{
+
+let table = abc.find(res.body.name)
+
+}
+
+
 var name  = j
 
 
-module.exports = name
+module.exports = table1

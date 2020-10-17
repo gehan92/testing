@@ -4,4 +4,6 @@ const router = require('express').Router();
 
 const value = require('../service/test')
 
-console.log(value)
+
+
+ console.log(value)
