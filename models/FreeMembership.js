@@ -11,12 +11,6 @@ userId:{
 username:{
         type:String,
    },
-// tokens:[{ 
-//         token:{
-//             type:String
-//         }
-// }],
-
 },{timestamps:true})
 
 module.exports= mongoose.model('membership',membershipSchema );
