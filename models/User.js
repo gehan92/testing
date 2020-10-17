@@ -51,6 +51,4 @@ profilePicture:{
     await appUser.save()
     return token
     }
-
-
 module.exports= mongoose.model('appUser',appUserSchema );
