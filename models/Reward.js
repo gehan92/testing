@@ -1,6 +1,5 @@
 const  mongoose = require('mongoose')
 const jwt=require('jsonwebtoken');
-const { string } = require('@hapi/joi');
 const rewardSchema = new mongoose.Schema({
 
         isCompleted: {
