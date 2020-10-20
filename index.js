@@ -9,6 +9,7 @@ const jwt=require('jsonwebtoken')
 //import routes
 const userRoute =   require('./routes/user');
 const rewardRoute= require('./routes/reward')
+const admin_rewardRoute= require('./routes/admin_reward')
 //  const freeMembershipRoute =   require('./routes/freeMembership');
 
 dotenv.config();
@@ -26,5 +27,7 @@ app.use(express.json());
 app.use('/api/user',userRoute);
 // app.use('/api/user',freeMembershipRoute);
 app.use('/api/user',rewardRoute);
+
+app.use('/api/user',admin_rewardRoute);
 
 app.listen(3000,()=>console.log('Server Up running'));

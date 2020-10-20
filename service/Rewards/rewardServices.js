@@ -1,4 +1,5 @@
 const Reward = require('../../models/Reward');
+const User = require('../../models/User')
 
 
 const   addAllRewards =async(req,res)=>{
@@ -15,6 +16,8 @@ const   addAllRewards =async(req,res)=>{
 
 const getAllRewards = async(req,res)=>{
     try{
+        const user1 = await User.find()
+        console.log(user1)
         const reward  =  await Reward.find()
         console.log(reward)
         res.send(reward)
