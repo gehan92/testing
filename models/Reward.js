@@ -27,11 +27,11 @@ const rewardSchema = new mongoose.Schema({
                         latitude:{
                             type:String
                         }
-                }],        
+                }],
 
         validity:{
                  type: String,
-                 
+
                 },
         rank:
                 {
