@@ -16,10 +16,19 @@ const   addAllRewards =async(req,res)=>{
 
 const getAllRewards = async(req,res)=>{
     try{
-        const user1 = await User.find()
-        console.log(user1)
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+        const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
-        console.log(reward)
+        .select('title_1')
+        .select('title_2')
+        .select('validity')
+        .select('rank')
+        .select('points')
+        .skip((page - 1)* pagination)
+        .limit(pagination)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -28,7 +37,20 @@ const getAllRewards = async(req,res)=>{
 
 const getAllRewardsDesc = async(req,res)=>{
     try{
-        const reward  =  await Reward.find().sort({points: -1})
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const reward  =  await Reward.find()
+        .select('title_1')
+        .select('title_2')
+        .select('validity')
+        .select('rank')
+        .select('points')
+        .sort({points: 1})
+        .skip((page - 1)* pagination)
+        .limit(pagination)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -36,7 +58,20 @@ const getAllRewardsDesc = async(req,res)=>{
 }
 const getAllRewardsAsc = async(req,res)=>{
     try{
-        const reward  =  await Reward.find().sort({points: 1})
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const reward  =  await Reward.find()
+        .select('title_1')
+        .select('title_2')
+        .select('validity')
+        .select('rank')
+        .select('points')
+        .sort({points: 1})
+        .skip((page - 1)* pagination)
+        .limit(pagination)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -45,7 +80,20 @@ const getAllRewardsAsc = async(req,res)=>{
 
 const getAllRewardsLeastRecentFirst = async(req,res)=>{
     try{
-        const reward  =  await Reward.find().sort({date: 1})
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const reward  =  await Reward.find().select('title_1')
+        .select('title_2')
+        .select('validity')
+        .select('rank')
+        .select('points')
+        .sort({date: -1})
+        .skip((page - 1)* pagination)
+        .limit(pagination)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -54,7 +102,21 @@ const getAllRewardsLeastRecentFirst = async(req,res)=>{
 
 const getAllRewardsMostRecentFirst = async(req,res)=>{
     try{
-        const reward  =  await Reward.find().sort({date: -1})
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+
+        const page = req.query.page ? parseInt(req.query.page) : 1;
+        const reward  =  await Reward.find()
+        .select('title_1')
+        .select('title_2')
+        .select('validity')
+        .select('rank')
+        .select('points')
+        .sort({date: -1})
+        .skip((page - 1)* pagination)
+        .limit(pagination)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -64,6 +126,7 @@ const getAllRewardsMostRecentFirst = async(req,res)=>{
 const getReward = async(req,res)=>{
     try{
         const _id = req.params.id
+        
         const reward  =  await Reward.findById(_id)
         const result = {
             title_1: reward.title_1,

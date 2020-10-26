@@ -8,6 +8,7 @@ router.post('/rewards',async(req,res)=>{
 
 router.get('/rewards',auth,async(req,res)=>{
     await  RewardService.getAllRewards(req,res)
+    
 });
 
 router.get('/rewardsDesc',auth,async(req,res)=>{

@@ -14,10 +14,17 @@ const addAllRewards =async(req,res)=>{
 
 const getAllRewards = async(req,res)=>{
     try{
-        const user1 = await User.find()
-        console.log(user1)
+        const pagination = req.query.pagination
+        ? parseInt(req.query.pagination)
+        : 10;
+        console.log(pagination)
+
+        const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
-        console.log(reward)
+        .skip((page - 1)* pagination)
+        .limit(pagination)
+
+        // console.log(reward)
         res.send(reward)
         }catch(e){
                 res.status(500).send()
@@ -40,7 +47,6 @@ const deleteReward = async (req,res)=>{
 const updateRewards = async function(req,res)  { 
        const _id = req.params.id
     if(_id){
-
      try{
         const reward = await Reward.findOneAndUpdate(_id, req.body, {new: true} )
          res.send(reward)
@@ -48,10 +54,7 @@ const updateRewards = async function(req,res)  {
      }catch (e){
         res.send(e.message)
      }
-
-     
     }else
-
     res.status(401).json({
         message: " "
     });

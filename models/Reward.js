@@ -6,7 +6,6 @@ const rewardSchema = new mongoose.Schema({
                 type: Boolean,
                 default: false
                  },
-
         title_1:{
                 type: String,
                 },
@@ -14,7 +13,7 @@ const rewardSchema = new mongoose.Schema({
         title_2:{
                 type: String,
                 },
-         description:{
+        description:{
                         type: String,
                 },
         locations:[{
