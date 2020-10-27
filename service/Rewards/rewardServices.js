@@ -132,8 +132,10 @@ const getReward = async(req,res)=>{
             title_1: reward.title_1,
             title_2: reward.title_2,
             validity:reward.validity,
+            description:reward.description,
             rank: reward.rank,
             points: reward.points,
+            locations: rewards.locations,
             date: reward.date
         }
         if(reward.length == 0 )

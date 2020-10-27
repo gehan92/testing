@@ -3,13 +3,11 @@ const appUserSchema  =new mongoose.Schema({
 
 name:{
     type:String,
-    max: 255, 
-    min: 6
+   
 },
 username:{
     type:String,
-    max: 255, 
-    min: 6
+   
 },
 email:{
     type:String,
@@ -20,12 +18,7 @@ password:{
     type:String
 },
 languages:{ 
-    language1:{
-        type:String
-    },
-   language2:{
-        type:String
-    }
+    type:String
 },
 tokens:[{ 
     token:{

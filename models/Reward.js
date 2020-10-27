@@ -6,6 +6,13 @@ const rewardSchema = new mongoose.Schema({
                 type: Boolean,
                 default: false
                  },
+        rewardPhoto:{
+                type:String
+
+                 },
+        category:{
+                type: String,
+        },         
         title_1:{
                 type: String,
                 },
@@ -16,10 +23,10 @@ const rewardSchema = new mongoose.Schema({
         description:{
                         type: String,
                 },
+        rewardPhotos:{
+                type: String
+        },        
         locations:[{
-                        location:{
-                            type:String
-                        },
                         longitude :{
                             type:String
                         },

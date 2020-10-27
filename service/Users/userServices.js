@@ -16,22 +16,12 @@ const userRegister = new User(req.body)
 const getUserDetails= async(req,res)=>{
     const _id = req.params.id
     try{
-    const userSettings  =  await User.find()
-    const UserResult = {
-        name: userSettings.name,
-        email: userSettings.email,
-        profilePicture:userSettings.profilePicture,
-        languages: userSettings.languages
-    }
-    if(userResults.length == 0 )
-    throw new Error ('no rewards found')
-    else
-    res.status(200).json({status:true, reward:UserResult})
+    const userSettings  =  await User.findById(_id).select('name').select('email').select('profilePicture')
+    res.send(userSettings)
     }catch(e){
      res.status(500).send()
     }
 }
-
 module.exports={
                 addAllUsers,
                 getUserDetails

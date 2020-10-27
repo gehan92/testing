@@ -18,7 +18,6 @@ const getAllRewards = async(req,res)=>{
         ? parseInt(req.query.pagination)
         : 10;
         console.log(pagination)
-
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
         .skip((page - 1)* pagination)
