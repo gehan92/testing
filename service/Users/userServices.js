@@ -1,17 +1,5 @@
-const User = require('../../models/User');
+const User = require('../../models/AppUser');
 const jwt = require('jsonwebtoken');
-
-const   addAllUsers =async(req,res)=>{
-const userRegister = new User(req.body)
-    try{
-        await userRegister.save()
-        const token =await userRegister.generateAppUserAuthToken()
-        res.status(201).send({userRegister,token})
-        }
-    catch(e){
-        res.status(400).send(e);
-    }
-};
 
 const getUserDetails= async(req,res)=>{
     const _id = req.params.id
@@ -23,6 +11,5 @@ const getUserDetails= async(req,res)=>{
     }
 }
 module.exports={
-                addAllUsers,
                 getUserDetails
     };

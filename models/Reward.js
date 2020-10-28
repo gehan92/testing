@@ -16,16 +16,15 @@ const rewardSchema = new mongoose.Schema({
         title_1:{
                 type: String,
                 },
-
         title_2:{
                 type: String,
                 },
         description:{
-                        type: String,
+                type: String,
                 },
-        rewardPhotos:{
+        avatar:{
                 type: String
-        },        
+        },
         locations:[{
                         longitude :{
                             type:String
@@ -34,7 +33,6 @@ const rewardSchema = new mongoose.Schema({
                             type:String
                         }
                 }],
-
         validity:{
                  type: String,
 

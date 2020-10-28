@@ -1,10 +1,14 @@
 const Reward = require('../../models/Reward');
-const User = require('../../models/User')
+const User = require('../../models/AppUser')
 
 
 const   addAllRewards =async(req,res)=>{
        const userRewards = new Reward(req.body)
     try{
+        if(req.file){
+            Reward.avatar  = req.file.path
+        }
+        
         await userRewards.save()
         const token =await userRewards.generateAuthToken()
         res.status(201).send({userRewards,token})
@@ -13,12 +17,12 @@ const   addAllRewards =async(req,res)=>{
         res.status(400).send(e);
     }
 };
-
+//https://www.youtube.com/watch?v=62YETqynpcs&ab_channel=TechFounder
 const getAllRewards = async(req,res)=>{
     try{
         const pagination = req.query.pagination
         ? parseInt(req.query.pagination)
-        : 10;
+        : 15;
         console.log(pagination)
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
@@ -27,6 +31,7 @@ const getAllRewards = async(req,res)=>{
         .select('validity')
         .select('rank')
         .select('points')
+        .select('createdAt')
         .skip((page - 1)* pagination)
         .limit(pagination)
         res.send(reward)
@@ -39,7 +44,7 @@ const getAllRewardsDesc = async(req,res)=>{
     try{
         const pagination = req.query.pagination
         ? parseInt(req.query.pagination)
-        : 10;
+        : 15;
         console.log(pagination)
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
@@ -48,7 +53,8 @@ const getAllRewardsDesc = async(req,res)=>{
         .select('validity')
         .select('rank')
         .select('points')
-        .sort({points: 1})
+        .select('createdAt')
+        .sort({points: -1})
         .skip((page - 1)* pagination)
         .limit(pagination)
         res.send(reward)
@@ -60,7 +66,7 @@ const getAllRewardsAsc = async(req,res)=>{
     try{
         const pagination = req.query.pagination
         ? parseInt(req.query.pagination)
-        : 10;
+        : 15;
         console.log(pagination)
         const page = req.query.page ? parseInt(req.query.page) : 1;
         const reward  =  await Reward.find()
@@ -69,6 +75,7 @@ const getAllRewardsAsc = async(req,res)=>{
         .select('validity')
         .select('rank')
         .select('points')
+        .select('createdAt')
         .sort({points: 1})
         .skip((page - 1)* pagination)
         .limit(pagination)
@@ -82,7 +89,7 @@ const getAllRewardsLeastRecentFirst = async(req,res)=>{
     try{
         const pagination = req.query.pagination
         ? parseInt(req.query.pagination)
-        : 10;
+        : 15;
         console.log(pagination)
 
         const page = req.query.page ? parseInt(req.query.page) : 1;
@@ -91,7 +98,8 @@ const getAllRewardsLeastRecentFirst = async(req,res)=>{
         .select('validity')
         .select('rank')
         .select('points')
-        .sort({date: -1})
+        .select('createdAt')
+        .sort({createdAt: -1})
         .skip((page - 1)* pagination)
         .limit(pagination)
         res.send(reward)
@@ -104,7 +112,7 @@ const getAllRewardsMostRecentFirst = async(req,res)=>{
     try{
         const pagination = req.query.pagination
         ? parseInt(req.query.pagination)
-        : 10;
+        : 15;
         console.log(pagination)
 
         const page = req.query.page ? parseInt(req.query.page) : 1;
@@ -114,7 +122,7 @@ const getAllRewardsMostRecentFirst = async(req,res)=>{
         .select('validity')
         .select('rank')
         .select('points')
-        .sort({date: -1})
+        .sort({createdAt: 1})
         .skip((page - 1)* pagination)
         .limit(pagination)
         res.send(reward)
@@ -146,7 +154,6 @@ const getReward = async(req,res)=>{
                 res.status(203).json({status:false, message:e.message})
         }
 }
-
 module.exports = {
                 addAllRewards,
                 getAllRewards,

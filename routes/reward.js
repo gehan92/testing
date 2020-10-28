@@ -2,6 +2,10 @@ const router = require('express').Router();
 const auth = require('../middleware/auth');
 const multer = require('multer')
 const RewardService = require('../service/Rewards/rewardServices')
+// const RewardService1 = require('../service/Rewards/rewardServices1')
+// const upload1 =require('../middleware/upload')
+
+
 
 router.post('/rewards',async(req,res)=>{
     await  RewardService.addAllRewards(req,res)
@@ -9,15 +13,21 @@ router.post('/rewards',async(req,res)=>{
 
 const upload = multer({
 
-    dest:'rewardImages'
+    dest:'avatars'
 })
 
-router.post('/rewardImage',upload.array('rewardImage',5),(req,res,next)=>{
+router.post('/rewardsImage',upload.array('avatar',5),(req,res)=>{
     // await  RewardService.addAllRewards(req,res)
-    const files = req.files
+    res.send()
 
-    res.send(files)
 });
+
+
+
+// router.post('/store',upload1.single('avatar'),RewardService1.store)
+//     //    RewardService1.store(req,res)
+//     // const files = req.files
+//     // res.send(files)
 
 
 router.get('/rewards',auth,async(req,res)=>{
