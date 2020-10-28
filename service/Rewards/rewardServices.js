@@ -1,5 +1,5 @@
 const Reward = require('../../models/Reward');
-const User = require('../../models/AppUser')
+
 
 
 const   addAllRewards =async(req,res)=>{
@@ -17,7 +17,7 @@ const   addAllRewards =async(req,res)=>{
         res.status(400).send(e);
     }
 };
-//https://www.youtube.com/watch?v=62YETqynpcs&ab_channel=TechFounder
+
 const getAllRewards = async(req,res)=>{
     try{
         const pagination = req.query.pagination

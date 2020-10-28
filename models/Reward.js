@@ -63,7 +63,7 @@ const rewardSchema = new mongoose.Schema({
         
         rewardSchema.methods.generateAuthToken = async function (){
         const Reward = this
-        const token = jwt.sign({_id:Reward._id.toString() },process.env.TOKEN_SECRET);
+        const token = jwt.sign({_id:Reward._id.toString() },process.env.APP_SECRET);
         Reward.tokens =  Reward.tokens.concat({token})
         await Reward.save()
         return token

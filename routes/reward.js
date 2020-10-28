@@ -11,16 +11,16 @@ router.post('/rewards',async(req,res)=>{
     await  RewardService.addAllRewards(req,res)
 });
 
-const upload = multer({
+// const upload = multer({
 
-    dest:'avatars'
-})
+//     dest:'avatars'
+// })
 
-router.post('/rewardsImage',upload.array('avatar',5),(req,res)=>{
-    // await  RewardService.addAllRewards(req,res)
-    res.send()
+// router.post('/rewardsImage',upload.array('avatar',5),(req,res)=>{
+//     // await  RewardService.addAllRewards(req,res)
+//     res.send()
 
-});
+// });
 
 
 

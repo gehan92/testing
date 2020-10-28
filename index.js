@@ -27,7 +27,6 @@ app.use(express.json());
 app.use('/api/user',userRoute);
 // app.use('/api/user',freeMembershipRoute);
 app.use('/api/user',rewardRoute);
-
 app.use('/api/user',admin_rewardRoute);
 
 app.listen(3000,()=>console.log('Server Up running'));
