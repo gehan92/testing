@@ -12,7 +12,7 @@ const rewardSchema = new mongoose.Schema({
                  },
         category:{
                 type: String,
-        },         
+        },
         title_1:{
                 type: String,
                 },
@@ -22,7 +22,7 @@ const rewardSchema = new mongoose.Schema({
         description:{
                 type: String,
                 },
-        avatar:{
+        code:{
                 type: String
         },
         locations:[{
@@ -33,10 +33,25 @@ const rewardSchema = new mongoose.Schema({
                             type:String
                         }
                 }],
+
+        // locations:{
+
+        //         type:{
+        //                 type:"String",
+        //                 enum:['Point','LineString','Polygon'],
+        //                 default:'Point'
+        //         },
+        //         coordinates:[Number]
+
         validity:{
                  type: String,
 
                 },
+                files:{
+                        type:String
+
+                },
+                
         rank:
                 {
                 type: String,

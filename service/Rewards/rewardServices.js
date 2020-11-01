@@ -1,4 +1,7 @@
 const Reward = require('../../models/Reward');
+const upload = require('../middleware/multer')
+const cloudinary = require('../middleware/cloudinary')
+const fs = require('fs')
 
 
 

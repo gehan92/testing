@@ -1,11 +1,32 @@
 const Reward = require('../../models/Reward');
+const upload = require('../middleware/multer')
+const cloudinary = require('../middleware/cloudinary')
+const fs = require('fs')
+const bodyParser = require('body-parser');
+router.use(bodyParser.urlencoded({extended:false}))
+router.use(bodyParser.json())
 
 const addAllRewards =async(req,res)=>{
     const userRewards = new Reward(req.body)
+    const uploader = async(path)=>await cloudinary.uploads(path,'Images')
+    const urls =[]
+    const files = req.files
+    // console.log(files)
+    for (const file of files){
+        const {path}=file
+        const newPath = await uploader(path)
+        // console.log(uploader)
+        urls.push(newPath)
+        fs.unlinkSync(path)
+
+    }
+
  try{
+
      await userRewards.save()
+     const files =req.urls;
      const token =await userRewards.generateAuthToken()
-     res.status(201).send({userRewards,token})
+     res.status(201).send({userRewards,token,files})
      }
  catch(e){
      res.status(400).send(e);
